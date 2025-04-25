@@ -1,17 +1,17 @@
+@extends('layouts.app') <!-- Sesuaikan dengan nama file layout-mu -->
 
+@section('title', 'Edit Produk')
 
-<div class="main-content">
-  <div class="header">
-    <h1>EDIT PRODUK</h1>
-  </div>
-
-  <form action="{{ route('products.store') }}" method="POST" class="product-form">
+@section('content')
+<div class="card">
+  <h2>EDIT PRODUK</h2>
+  <form action="{{ route('products.store') }}" method="POST">
     @csrf
-    <label>Nama</label>
-    <input type="text" name="name" required>
+    <label for="name">Nama</label>
+    <input type="text" name="name" id="name" required>
 
-    <label>Harga</label>
-    <input type="number" name="price" required>
+    <label for="price">Harga</label>
+    <input type="number" name="price" id="price" required>
 
     <div class="form-buttons">
       <a href="{{ route('dashboard') }}" class="btn-red">KEMBALI</a>
@@ -19,4 +19,4 @@
     </div>
   </form>
 </div>
-
+@endsection

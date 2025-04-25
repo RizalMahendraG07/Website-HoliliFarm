@@ -7,6 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\DashboardController' => $baseDir . '/app/Http/Controllers/DashboardController.php',
+    'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
@@ -1107,6 +1109,7 @@ return array(
     'Illuminate\\Cache\\DynamoDbLock' => $vendorDir . '/laravel/framework/src/Illuminate/Cache/DynamoDbLock.php',
     'Illuminate\\Cache\\DynamoDbStore' => $vendorDir . '/laravel/framework/src/Illuminate/Cache/DynamoDbStore.php',
     'Illuminate\\Cache\\Events\\CacheEvent' => $vendorDir . '/laravel/framework/src/Illuminate/Cache/Events/CacheEvent.php',
+    'Illuminate\\Cache\\Events\\CacheFlushFailed' => $vendorDir . '/laravel/framework/src/Illuminate/Cache/Events/CacheFlushFailed.php',
     'Illuminate\\Cache\\Events\\CacheFlushed' => $vendorDir . '/laravel/framework/src/Illuminate/Cache/Events/CacheFlushed.php',
     'Illuminate\\Cache\\Events\\CacheFlushing' => $vendorDir . '/laravel/framework/src/Illuminate/Cache/Events/CacheFlushing.php',
     'Illuminate\\Cache\\Events\\CacheHit' => $vendorDir . '/laravel/framework/src/Illuminate/Cache/Events/CacheHit.php',
@@ -1223,6 +1226,7 @@ return array(
     'Illuminate\\Console\\View\\Components\\Task' => $vendorDir . '/laravel/framework/src/Illuminate/Console/View/Components/Task.php',
     'Illuminate\\Console\\View\\Components\\TwoColumnDetail' => $vendorDir . '/laravel/framework/src/Illuminate/Console/View/Components/TwoColumnDetail.php',
     'Illuminate\\Console\\View\\Components\\Warn' => $vendorDir . '/laravel/framework/src/Illuminate/Console/View/Components/Warn.php',
+    'Illuminate\\Console\\View\\TaskResult' => $vendorDir . '/laravel/framework/src/Illuminate/Console/View/TaskResult.php',
     'Illuminate\\Container\\Attributes\\Auth' => $vendorDir . '/laravel/framework/src/Illuminate/Container/Attributes/Auth.php',
     'Illuminate\\Container\\Attributes\\Authenticated' => $vendorDir . '/laravel/framework/src/Illuminate/Container/Attributes/Authenticated.php',
     'Illuminate\\Container\\Attributes\\Cache' => $vendorDir . '/laravel/framework/src/Illuminate/Container/Attributes/Cache.php',
