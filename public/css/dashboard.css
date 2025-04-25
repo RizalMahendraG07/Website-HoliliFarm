@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  body {
+    background: #f5f5f5;
+  }
+  
+  .container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    width: 200px;
+    background-color: #27ae60;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .sidebar h2 {
+    margin-bottom: 30px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+  }
+  
+  .sidebar li {
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  
+  .sidebar .active {
+    font-weight: bold;
+    background-color: #1f8a4d;
+    padding: 5px 10px;
+    border-radius: 10px;
+  }
+  
+  .logout {
+    background: white;
+    color: hsl(145, 63%, 42%);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 20px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header h1 {
+    color: #27ae60;
+  }
+  
+  .search-add {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .search-add input {
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .add-btn {
+    background-color: #27ae60;
+    color: white;
+    font-size: 20px;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .product-list {
+    margin-top: 30px;
+    list-style: none;
+  }
+  
+  .product-list li {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e0e0e0;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    align-items: center;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .edit {
+    background-color: #f1c40f;
+    border: none;
+    padding: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .delete {
+    background-color: #e74c3c;
+    border: none;
+    padding: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .header h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .add-btn {
+    background-color: #28a745;
+    color: white;
+    font-size: 24px;
+    padding: 5px 15px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+  
+  .product-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .product-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  .product-list li span:first-child {
+    flex: 2;
+    font-weight: 500;
+  }
+  
+  .product-list li span:nth-child(2) {
+    flex: 1;
+    text-align: right;
+    font-weight: 600;
+    padding-right: 400px;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+  }
+  
+  .actions form,
+  .actions a {
+    display: inline-block;
+  }
+  
+  .actions .edit {
+    background-color: #ffc107;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .actions .delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  
