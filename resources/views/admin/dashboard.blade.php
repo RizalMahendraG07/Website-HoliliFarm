@@ -15,7 +15,7 @@
       <span>{{ $index + 1 }}. {{ $product->name }}</span>
       <span>Rp. {{ number_format($product->price, 0, ',', '.') }}</span>
       <div class="actions">
-        <a href="{{ route('products.update', $product->id) }}" class="edit">✏️</a>
+        <a href="{{ route('products.edit', $product->id) }}" class="edit">✏️</a>
 
         <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?')">
           @csrf

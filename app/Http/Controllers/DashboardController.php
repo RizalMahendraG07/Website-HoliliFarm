@@ -47,5 +47,11 @@ class DashboardController extends Controller
         {
               return view('admin.tambah');
         }
+        
+        public function edit($id)
+{
+    $product = Product::findOrFail($id);
+    return view('admin.editproduk', compact('product'));
+}
 
 }

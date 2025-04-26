@@ -9,14 +9,26 @@
 <body>
   <div class="container">
     <aside class="sidebar">
-      <h2>Holili Farm</h2>
-      <nav>
-        <ul>
-          <li class="active"><span>🧺</span> Produk</li>
-          <li><span>ℹ️</span> Informasi</li>
-        </ul>
-      </nav>
-      <form action="{{ route('logout') }}" method="POST">
+      <div>
+        <h2 class="sidebar-title">Holili Farm</h2>
+
+        <nav class="sidebar-menu">
+          <ul>
+            <li class="{{ request()->routeIs('products.*') ? 'active' : '' }}">
+              <a href="{{ route('products.index') }}">
+                🧺 Produk
+              </a>
+            </li>
+            <li class="{{ request()->routeIs('informasi.*') ? 'active' : '' }}">
+              <a href="{{ route('informasi.index') }}">
+                ℹ️ Informasi
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <form action="{{ route('logout') }}" method="POST" class="logout-form">
         @csrf
         <button class="logout">Log Out</button>
       </form>

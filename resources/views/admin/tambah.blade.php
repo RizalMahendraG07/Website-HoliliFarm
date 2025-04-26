@@ -1,10 +1,10 @@
 @extends('layouts.app') <!-- Sesuaikan dengan nama file layout-mu -->
 
-@section('title', 'Edit Produk')
+@section('title', 'Tambah Produk')
 
 @section('content')
 <div class="card">
-  <h2>EDIT PRODUK</h2>
+  <h2>TAMBAH PRODUK</h2>
   <form action="{{ route('products.store') }}" method="POST">
     @csrf
     <label for="name">Nama</label>
