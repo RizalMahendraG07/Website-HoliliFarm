@@ -1,15 +1,15 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
-
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-    content: ['./**/*.blade.php'],
-    darkMode: 'class',
+export default {
+    content: [
+      "./index.html",
+      "./resources/**/*.blade.php",
+      "./resources/**/*.js",
+      "./resources/**/*.vue",
+    ],
     theme: {
-        extend: {
-            fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-            },
-        },
+      extend: {},
     },
-    plugins: [],
-};
+    plugins: [require('daisyui')],
+
+  }
+  

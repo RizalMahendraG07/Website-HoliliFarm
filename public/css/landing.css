@@ -6,7 +6,7 @@ body {
 
 header {
     position: fixed;
-    background: linear-gradient(to right, #1f000d, #d61968);
+    background: linear-gradient(to right, #FFFFFF, #15AE2F);
     z-index: 10000;
     width: 100%;
     top: 0;
@@ -63,7 +63,7 @@ header {
 }
 
 .btn_search_img_nav {
-    background-color: #880039;
+    background-color: #6ee7b7;
     border: none;
     border-radius: 50%;
     padding: 5px;
@@ -89,7 +89,7 @@ section {
     
 }
 #home{
-    background: linear-gradient(to right, #1f000d, #FF4F99);
+    background: linear-gradient(to center, #FFFFFF, #15AE2F);
     /* text-align: right; */
     width: 100%;
     align-items: center;
@@ -116,7 +116,7 @@ section {
 }
 
 .home_content_left h1{
-    color: #FFFCBF;
+    color: #000000;
     font-size: 60px;
     text-align: left; /* Rata kiri untuk judul */
     /* margin-bottom: 10px; */
@@ -124,13 +124,13 @@ section {
 }
 
 .home_content_left p{
-    color: #FFFCBF;
+    color: #000000;
     font-size: 30px;
     text-align: left;
 }
 
 .btn_home {
-    background-color: #45001a;
+    background-color: #15AE2F;
     color: #FFFCBF;
     padding: 10px 20px;
     border: none;
@@ -142,7 +142,7 @@ section {
     cursor: pointer;
 }
 .btn_home:hover {
-    background-color: #7b1d41;
+    background-color: #15AE2F;
 }
 
 .home_content_right img {
