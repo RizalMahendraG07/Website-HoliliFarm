@@ -1,3 +1,4 @@
+/* Reset default styling */
 * {
   margin: 0;
   padding: 0;
@@ -11,17 +12,23 @@ body {
 
 .container {
   display: flex;
-  height: 100vh;
+  height: 100%;
 }
 
 .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 200px;
+  height: 100vh;
   background-color: #27ae60;
   color: white;
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-y: auto;
+  z-index: 100;
 }
 
 .sidebar-title {
@@ -91,9 +98,8 @@ body {
   border-radius: 20px;
   margin: 20px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin-left: 220px; /* kasih ruang agar tidak tertimpa sidebar */
 }
-
-
 
 .header {
   display: flex;
@@ -142,6 +148,37 @@ body {
   align-items: center;
 }
 
+.product-info {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  
+}
+
+.product-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-details {
+  flex-grow: 1;
+}
+
+.product-details span {
+  display: flex;
+}
+
+.deskripsi {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 700px;
+  display: block;
+  color: #666;
+}
+
 .actions {
   display: flex;
   gap: 5px;
@@ -162,6 +199,8 @@ body {
   border-radius: 5px;
   cursor: pointer;
 }
+
+/* Header adjustments */
 .header {
   display: flex;
   justify-content: space-between;
@@ -240,6 +279,8 @@ body {
   border-radius: 6px;
   cursor: pointer;
 }
+
+/* Card styling */
 .card {
   background: #fff;
   border-radius: 16px;
@@ -307,11 +348,28 @@ input[type="number"] {
   background-color: #009933;
 }
 
-.deskripsi {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 700px;
-  display: block;
-  color: #666;
+/* Responsiveness for mobile devices */
+@media (max-width: 768px) {
+  .product-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .product-image {
+    width: 60px;
+    height: 60px;
+  }
+
+  .product-details {
+    margin-top: 10px;
+  }
+
+  .product-details span {
+    font-size: 14px;
+  }
+
+  .actions {
+    margin-top: 10px;
+    gap: 10px;
+  }
 }

@@ -24,6 +24,11 @@
                 ℹ️ Informasi
               </a>
             </li>
+            <li class="{{ request()->routeIs('informasi.*') ? 'active' : '' }}">
+              <a href="{{ route('riwayat.index') }}">
+              ℹ️ Riwayat Penjualan
+              </a>
+            </li>
           </ul>
         </nav>
       </div>

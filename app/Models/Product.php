@@ -9,5 +9,11 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'price']; // ✅ tambahkan ini
+    protected $fillable = ['name', 'price', 'deskripsi', 'image']; 
+
+    public function riwayats()
+{
+    return $this->hasMany(Riwayat::class, 'produk_id');
+}
+
 }

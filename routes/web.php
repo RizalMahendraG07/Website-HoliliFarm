@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\RiwayatController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,3 +29,10 @@ Route::get('/informasi/{id}/edit', [InformasiController::class, 'edit'])->name('
 Route::put('/informasi/{id}', [InformasiController::class, 'update'])->name('informasi.update');
 Route::delete('/informasi/{id}', [InformasiController::class, 'destroy'])->name('informasi.destroy');
 
+Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
+
+Route::get('/riwayat/create', [RiwayatController::class, 'create'])->name('riwayat.create');
+Route::post('/riwayat', [RiwayatController::class, 'store'])->name('riwayat.store');
+Route::get('/riwayat/{id}/edit', [RiwayatController::class, 'edit'])->name('riwayat.edit');
+Route::put('/riwayat/{id}', [RiwayatController::class, 'update'])->name('riwayat.update');
+Route::delete('/riwayat/{id}', [RiwayatController::class, 'destroy'])->name('riwayat.destroy');

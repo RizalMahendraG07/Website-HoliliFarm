@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -18,23 +19,53 @@ class DashboardController extends Controller
         {
             $request->validate([
                 'name' => 'required',
-                'price' => 'required|integer',
+                'price' => 'required|numeric',
+                'deskripsi' => 'required',
+                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
             ]);
-    
-            Product::create($request->only('name', 'price'));
-            return redirect()->route('dashboard')->with('success', 'Produk ditambahkan!');
+        
+            $path = $request->file('image')->store('fotoproduk', 'public');
+            
+        
+            Product::create([
+                'name' => $request->name,
+                'price' => $request->price,
+                'deskripsi' => $request->deskripsi,
+                'image' =>  'storage/' .$path,
+            ]);
+        
+            return redirect()->route('dashboard')->with('success', 'Produk berhasil ditambahkan');
         }
     
         public function update(Request $request, $id)
-        {
-            $request->validate([
-                'name' => 'required',
-                'price' => 'required|integer',
-            ]);
-    
-            $product = Product::findOrFail($id);
-            $product->update($request->only('name', 'price'));
-            return redirect()->route('dashboard')->with('success', 'Produk diupdate!');
+        
+            {
+                $request->validate([
+                    'name' => 'required|string|max:255',
+                    'price' => 'required|numeric',
+                    'deskripsi' => 'required|string',
+                    'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+                ]);
+            
+                $product = Product::findOrFail($id);
+            
+                $product->name = $request->name;
+                $product->price = $request->price;
+                $product->deskripsi = $request->deskripsi;
+            
+                if ($request->hasFile('image')) {
+                    // Hapus gambar lama jika ada
+                    if ($product->image && file_exists(public_path($product->image))) {
+                        unlink(public_path($product->image));
+                    }
+            
+                    $path = $request->file('image')->store('fotoproduk', 'public'); // Simpan ke public/fotoproduk
+                    $product->image = 'storage/' . $path; // Simpan path dengan prefix 'storage/'
+                }
+            
+                $product->save();
+            
+                return redirect()->route('dashboard')->with('success', 'Produk berhasil diperbarui.');
         }
     
         public function destroy($id)
