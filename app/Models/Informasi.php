@@ -13,5 +13,6 @@ class Informasi extends Model
         'Judul',
         'Deskripsi',
         'Tanggal',
+        'foto',
     ];
 }

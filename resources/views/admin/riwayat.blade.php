@@ -16,10 +16,11 @@
             <p class="deskripsi">{{ $index + 1 }}. {{ $item->nama_pembeli }}</p>
         </div>
 
-        <div style="flex: 3;">
-            <h3>Alamat</h3>
-            <p class="deskripsi">{{ $item->alamat }}</p>
-        </div>
+        <div style="flex: 2; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+    <h3>Alamat</h3>
+    <p class="deskripsi">{{ $item->alamat }}</p>
+</div>
+
 
         <div style="flex: 2;">
             <h3>Produk</h3>
@@ -28,7 +29,7 @@
         </div>
 
         <div style="flex: 2;">
-            <h3>Jumlah Produk</h3>
+            <h3>Jumlah</h3>
             <p class="deskripsi">{{ $item->jumlah_produk }} Kg</p>
         </div>
 
@@ -36,6 +37,11 @@
             <h3>Total Harga</h3>
             <p class="deskripsi">Rp{{ number_format($item->harga_total, 0, ',', '.') }}</p>
         </div>
+        <div style="flex: 2;">
+    <h3>Status</h3>
+    <p class="deskripsi">{{ $item->status }}</p>
+</div>
+
 
         <div class="actions">
             <a href="{{ route('riwayat.edit', $item->id) }}" class="edit">✏️</a>

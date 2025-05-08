@@ -16,13 +16,14 @@
 
     <label for="produk_id">Produk</label>
     <select name="produk_id" id="produk_id" required>
-    <option value="" disabled selected>Pilih Produk</option>
-    @foreach ($products as $product)
-        <option value="{{ $product->id }}" data-price="{{ $product->price }}"
+        <option  value="" disabled selected>Pilih Produk</option>
+      @foreach ($products as $product)
+          <option value="{{ $product->id }}" data-price="{{ $product->price }}"
             {{ old('produk_id') == $product->id ? 'selected' : '' }}>
             {{ $product->name }}
         </option>
     @endforeach
+
 </select>
 
     <label for="jumlah_produk">Jumlah Produk</label>
@@ -30,9 +31,15 @@
 
     <label for="harga_total">Total Harga</label>
     <input type="text" name="harga_total" id="harga_total" value="{{ old('harga_total') }}" readonly>
+<label for="status">Status</label>
+<select name="status" id="status" required>
+    <option value="Proses" {{ old('status') == 'Proses' ? 'selected' : '' }}>Proses</option>
+    <option value="Selesai" {{ old('status') == 'Selesai' ? 'selected' : '' }}>Selesai</option>
+    <option value="Cancel" {{ old('status') == 'Cancel' ? 'selected' : '' }}>Cancel</option>
+</select>
 
     <div class="form-buttons">
-      <a href="{{ route('dashboard') }}" class="btn-red">KEMBALI</a>
+      <a href="{{ route('riwayat.index') }}" class="btn-red">KEMBALI</a>
       <button type="submit" class="btn-green">TAMBAH</button>
     </div>
   </form>

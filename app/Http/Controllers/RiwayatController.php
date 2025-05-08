@@ -17,36 +17,37 @@ class RiwayatController extends Controller
     public function create()
     {
         $products = Product::all();
-return view('admin.tambahRiwayat', compact('products'));
-
+        return view('admin.tambahRiwayat', compact('products'));
     }
 
     public function store(Request $request)
-{
-    $request->validate([
-        'nama_pembeli' => 'required|string',
-        'alamat' => 'required|string',
-        'produk_id' => 'required|exists:products,id',
-        'jumlah_produk' => 'required|integer|min:1',
-    ]);
+    {
+        $request->validate([
+            'nama_pembeli' => 'required|string',
+            'alamat' => 'required|string',
+            'produk_id' => 'required|exists:products,id',
+            'jumlah_produk' => 'required|integer|min:1',
+            'status' => 'required|in:Selesai,Proses,Cancel'
+        ]);
 
-    $product = Product::find($request->produk_id);
-    if (!$product) {
-        return redirect()->back()->withErrors(['produk_id' => 'Produk tidak ditemukan.']);
+        $product = Product::find($request->produk_id);
+        if (!$product) {
+            return redirect()->back()->withErrors(['produk_id' => 'Produk tidak ditemukan.']);
+        }
+
+        $total = $product->price * $request->jumlah_produk;
+
+        Riwayat::create([
+            'nama_pembeli' => $request->nama_pembeli,
+            'alamat' => $request->alamat,
+            'produk_id' => $product->id,
+            'jumlah_produk' => $request->jumlah_produk,
+            'harga_total' => $total,
+            'status' => $request->status
+        ]);
+
+        return redirect()->route('riwayat.index')->with('success', 'Riwayat berhasil ditambahkan');
     }
-
-    $total = $product->price * $request->jumlah_produk;
-
-    Riwayat::create([
-        'nama_pembeli' => $request->nama_pembeli,
-        'alamat' => $request->alamat,
-        'produk_id' => $product->id,  // Menyimpan produk_id bukan nama produk
-        'jumlah_produk' => $request->jumlah_produk,
-        'harga_total' => $total,
-    ]);
-
-    return redirect()->route('riwayat.index')->with('success', 'Riwayat berhasil ditambahkan');
-}
 
     public function edit($id)
     {
@@ -56,30 +57,30 @@ return view('admin.tambahRiwayat', compact('products'));
     }
 
     public function update(Request $request, $id)
-{
-    $request->validate([
-        'nama_pembeli' => 'required|string',
-        'alamat' => 'required|string',
-        'produk_id' => 'required|exists:products,id',
-        'jumlah_produk' => 'required|integer',
-        'harga_total' => 'required|numeric'
-    ]);
+    {
+        $request->validate([
+            'nama_pembeli' => 'required|string',
+            'alamat' => 'required|string',
+            'produk_id' => 'required|exists:products,id',
+            'jumlah_produk' => 'required|integer',
+            'harga_total' => 'required|numeric',
+            'status' => 'required|in:Selesai,Proses,Cancel'
+        ]);
 
-    $product = Product::findOrFail($request->produk_id);
+        $product = Product::findOrFail($request->produk_id);
 
-    $riwayat = Riwayat::findOrFail($id);
-    $riwayat->update([
-        'nama_pembeli' => $request->nama_pembeli,
-        'alamat' => $request->alamat,
-        'produk_id' => $product->id, // Update produk_id
-        'jumlah_produk' => $request->jumlah_produk,
-        'harga_total' => $request->harga_total
-    ]);
+        $riwayat = Riwayat::findOrFail($id);
+        $riwayat->update([
+            'nama_pembeli' => $request->nama_pembeli,
+            'alamat' => $request->alamat,
+            'produk_id' => $product->id,
+            'jumlah_produk' => $request->jumlah_produk,
+            'harga_total' => $request->harga_total,
+            'status' => $request->status
+        ]);
 
-    return redirect()->route('riwayat.index')->with('success', 'Informasi berhasil diupdate.');
-}
-    
-
+        return redirect()->route('riwayat.index')->with('success', 'Informasi berhasil diupdate.');
+    }
 
     public function destroy($id)
     {

@@ -32,6 +32,13 @@
     <label for="harga_total">Total Harga</label>
     <input type="text" name="harga_total" id="harga_total" value="{{ $riwayat->harga_total }}" readonly>
 
+    <label for="status">Status</label>
+  <select name="status" id="status" required>
+    <option value="Proses" {{ $riwayat->status == 'Proses' ? 'selected' : '' }}>Proses</option>
+    <option value="Selesai" {{ $riwayat->status == 'Selesai' ? 'selected' : '' }}>Selesai</option>
+    <option value="Cancel" {{ $riwayat->status == 'Cancel' ? 'selected' : '' }}>Cancel</option>
+  </select>
+
     <div class="form-buttons">
       <a href="{{ route('riwayat.index') }}" class="btn-red">KEMBALI</a>
       <button type="submit" class="btn-green">SIMPAN</button>
