@@ -4,7 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@yield('title', 'Holili Farm')</title>
+  <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
   <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/produk.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+
+  @stack('styles') <!-- Untuk stylesheet tambahan jika ada -->
 </head>
 <body>
   <div class="container">
@@ -14,6 +19,11 @@
 
         <nav class="sidebar-menu">
           <ul>
+          <li class="{{ request()->routeIs('grafik.*') ? 'active' : '' }}">
+              <a href="{{ route('grafik.index') }}">
+                🧺 Dashboard
+              </a>
+            </li>
             <li class="{{ request()->routeIs('products.*') ? 'active' : '' }}">
               <a href="{{ route('products.index') }}">
                 🧺 Produk

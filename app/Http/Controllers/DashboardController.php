@@ -5,6 +5,9 @@ use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Informasi;
+use App\Models\Riwayat;
+use Carbon\Carbon;  
 
 class DashboardController extends Controller
 
@@ -80,9 +83,40 @@ class DashboardController extends Controller
         }
         
         public function edit($id)
-{
+    {
     $product = Product::findOrFail($id);
     return view('admin.editproduk', compact('product'));
-}
+    }   
+
+        public function grafik() {
+            $productCount = Product::count();
+
+        // Mengambil data jumlah riwayat transaksi
+        $riwayatCount = Riwayat::count();
+        $informasiCount= Informasi::count();
+
+        // Mengambil total penghasilan perhari, perminggu, perbulan, dan pertahun
+        $dailyIncome = Riwayat::whereDate('created_at', Carbon::today())
+            ->sum('harga_total');
+
+        $weeklyIncome = Riwayat::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+            ->sum('harga_total');
+
+        $monthlyIncome = Riwayat::whereMonth('created_at', Carbon::now()->month)
+            ->sum('harga_total');
+
+        $yearlyIncome = Riwayat::whereYear('created_at', Carbon::now()->year)
+            ->sum('harga_total');
+
+        return view('admin.grafik', compact(
+            'productCount', 
+            'informasiCount',
+            'riwayatCount', 
+            'dailyIncome', 
+            'weeklyIncome', 
+            'monthlyIncome', 
+            'yearlyIncome'
+        ));
+        }
 
 }

@@ -9,7 +9,7 @@ class Riwayat extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['nama_pembeli', 'alamat', 'produk_id', 'jumlah_produk', 'harga_total','status'];  // Perbaiki 'produk' ke 'produk_id'
+    protected $fillable = ['nama_pembeli', 'alamat', 'produk_id', 'jumlah_produk', 'harga_total','status','created_at'];  // Perbaiki 'produk' ke 'produk_id'
 
     public function product()
     {

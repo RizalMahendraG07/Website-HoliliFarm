@@ -4,19 +4,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\AuthController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::middleware('auth')->group(function () {
+Route::get('/grafik', [DashboardController::class, 'grafik'])->name('grafik.index');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/products/create', [DashboardController::class, 'create'])->name('products.create');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::post('/products', [DashboardController::class, 'store'])->name('products.store');
 Route::put('/products/{id}', [DashboardController::class, 'update'])->name('products.update');
 Route::delete('/products/{id}', [DashboardController::class, 'destroy'])->name('products.destroy');
-Route::post('/logout', function () {
-return redirect('/welcome'); 
-})->name('logout');
+
 Route::get('/produk', [DashboardController::class, 'index'])->name('products.index');
 Route::get('/products/{id}/edit', [DashboardController::class, 'edit'])->name('products.edit');
 
@@ -36,3 +35,9 @@ Route::post('/riwayat', [RiwayatController::class, 'store'])->name('riwayat.stor
 Route::get('/riwayat/{id}/edit', [RiwayatController::class, 'edit'])->name('riwayat.edit');
 Route::put('/riwayat/{id}', [RiwayatController::class, 'update'])->name('riwayat.update');
 Route::delete('/riwayat/{id}', [RiwayatController::class, 'destroy'])->name('riwayat.destroy');
+});
+
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

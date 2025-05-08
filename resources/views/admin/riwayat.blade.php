@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="header">
-  <h1>Riwayat</h1>
+  <h1>RIWAYAT</h1>
   <a href="{{ route('riwayat.create') }}" class="add-btn">+</a>
 </div>
 
@@ -13,7 +13,7 @@
     <li>
         <div style="flex: 2;">
             <h3>Nama</h3>
-            <p class="deskripsi">{{ $index + 1 }}. {{ $item->nama_pembeli }}</p>
+            <p class="deskripsi">{{ $item->nama_pembeli }}</p>
         </div>
 
         <div style="flex: 2; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
@@ -36,6 +36,10 @@
         <div style="flex: 2;">
             <h3>Total Harga</h3>
             <p class="deskripsi">Rp{{ number_format($item->harga_total, 0, ',', '.') }}</p>
+        </div>
+        <div style="flex: 2;">
+            <h3>Tanggal</h3>
+            <p class="deskripsi">{{ $item->created_at->format('d-m-Y') }}</p>
         </div>
         <div style="flex: 2;">
     <h3>Status</h3>
