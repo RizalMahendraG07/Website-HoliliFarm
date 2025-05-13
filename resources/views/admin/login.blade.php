@@ -97,7 +97,7 @@
         </form>
 
         <div class="register-link">
-            <p>Belum punya akun? <a href="">Daftar disini</a></p>
+            <p>Lupa Kata Sandi? <a href="">Klik disini</a></p>
         </div>
     </div>
 </body>

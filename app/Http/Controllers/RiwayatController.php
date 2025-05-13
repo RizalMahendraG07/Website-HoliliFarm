@@ -5,13 +5,36 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Riwayat;
 use App\Models\Product;
+use Illuminate\Support\Carbon;
 
 class RiwayatController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $riwayat = Riwayat::all();
-        return view('admin/riwayat', compact('riwayat'));
+        $query = Riwayat::with('product'); // Pastikan relasi 'product' sudah ada di model Riwayat
+
+        switch ($request->filter) {
+            case 'harian':
+                $query->whereDate('created_at', Carbon::today());
+                break;
+            case 'mingguan':
+                $query->whereBetween('created_at', [
+                    Carbon::now()->startOfWeek(),
+                    Carbon::now()->endOfWeek()
+                ]);
+                break;
+            case 'bulanan':
+                $query->whereMonth('created_at', Carbon::now()->month)
+                      ->whereYear('created_at', Carbon::now()->year);
+                break;
+            case 'tahunan':
+                $query->whereYear('created_at', Carbon::now()->year);
+                break;
+        }
+    
+        $riwayat = $query->orderBy('created_at', 'desc')->get();
+    
+        return view('admin.riwayat', compact('riwayat'));
     }
 
     public function create()

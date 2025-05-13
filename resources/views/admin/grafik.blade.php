@@ -28,7 +28,8 @@
 
         <!-- Penghasilan Harian -->
         <div class="col-md-3 mb-4">
-            <a href="{{ route('riwayat.index') }}" class="custom-card-link">
+        <a href="{{ route('riwayat.index', ['filter' => 'harian']) }}" class="custom-card-link">
+
                 <div class="custom-card custom-card-daily-income custom-hover-shadow">
                     <div class="custom-card-body">
                         <h5 class="custom-card-title">Penghasilan Harian</h5>
@@ -50,7 +51,7 @@
         </div>
         <!-- Penghasilan Mingguan -->
         <div class="col-md-3 mb-4">
-            <a href="{{ route('riwayat.index') }}" class="custom-card-link">
+        <a href="{{ route('riwayat.index', ['filter' => 'mingguan']) }}" class="custom-card-link">
                 <div class="custom-card custom-card-weekly-income custom-hover-shadow">
                     <div class="custom-card-body">
                         <h5 class="custom-card-title">Penghasilan Mingguan</h5>
@@ -64,7 +65,8 @@
     <div class="row mt-4 custom-card-container">
         <!-- Penghasilan Bulanan -->
         <div class="col-md-3 mb-4">
-            <a href="{{ route('riwayat.index') }}" class="custom-card-link">
+        <a href="{{ route('riwayat.index', ['filter' => 'bulanan']) }}" class="custom-card-link">
+
                 <div class="custom-card custom-card-monthly-income custom-hover-shadow">
                     <div class="custom-card-body">
                         <h5 class="custom-card-title">Penghasilan Bulanan</h5>
@@ -76,7 +78,8 @@
 
         <!-- Penghasilan Tahunan -->
         <div class="col-md-3 mb-4">
-            <a href="{{ route('riwayat.index') }}" class="custom-card-link">
+        <a href="{{ route('riwayat.index', ['filter' => 'tahunan']) }}" class="custom-card-link">
+
                 <div class="custom-card custom-card-yearly-income custom-hover-shadow">
                     <div class="custom-card-body">
                         <h5 class="custom-card-title">Penghasilan Tahunan</h5>
