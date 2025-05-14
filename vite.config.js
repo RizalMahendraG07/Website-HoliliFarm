@@ -13,5 +13,6 @@ export default defineConfig({
             'resources/images/**',
             ],
         }),
+        tailwindcss(),
     ],
 });

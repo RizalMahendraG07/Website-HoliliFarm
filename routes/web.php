@@ -31,3 +31,7 @@ Route::get('/informasi/{id}/edit', [InformasiController::class, 'edit'])->name('
 Route::put('/informasi/{id}', [InformasiController::class, 'update'])->name('informasi.update');
 Route::delete('/informasi/{id}', [InformasiController::class, 'destroy'])->name('informasi.destroy');
 
+Route::get('/login/{id}', [AuthController::class, 'showLoginFrom'])->name('login');
+Route::get('/login/{id}', [AuthController::class, 'login']);
+Route::get('/logout/{id}', [AuthController::class, 'logout'])->name('logout');
+
