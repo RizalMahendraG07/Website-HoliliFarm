@@ -3,6 +3,57 @@
 @section('title', 'Produk - Holili Farm')
 
 @section('content')
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.delete-form').forEach(form => {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault(); // Mencegah submit langsung
+
+        const productName = form.getAttribute('data-nama');
+
+        Swal.fire({
+          title: 'Apakah kamu yakin?',
+          text: "Produk \"" + productName + "\" akan dihapus permanen!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Ya, hapus!',
+          cancelButtonText: 'Batal'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            form.submit();
+          }
+        });
+      });
+    });
+  });
+</script>
+@endpush
+
+@if(session('success'))
+  <script>
+    Swal.fire({
+      icon: 'success',
+      title: 'Berhasil!',
+      text: "{{ session('success') }}",
+      confirmButtonColor: '#28a745'
+    });
+  </script>
+@endif
+
+@if(session('error'))
+  <script>
+    Swal.fire({
+      icon: 'error',
+      title: 'Gagal!',
+      text: "{{ session('error') }}",
+      confirmButtonColor: '#dc3545'
+    });
+  </script>
+@endif
 
 <div class="header">
   <h1>PRODUK</h1>
@@ -26,7 +77,7 @@
       </div>
       <div class="actions">
         <a href="{{ route('products.edit', $product->id) }}" class="edit">✏️</a>
-        <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?')">
+        <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="delete-form" data-nama="{{ $product->name }}">
           @csrf
           @method('DELETE')
           <button class="delete">🗑️</button>

@@ -3,6 +3,28 @@
 @section('title', 'Tambah Produk')
 
 @section('content')
+@if(session('success'))
+  <script>
+    Swal.fire({
+      icon: 'success',
+      title: 'Berhasil!',
+      text: "{{ session('success') }}",
+      confirmButtonColor: '#28a745'
+    });
+  </script>
+@endif
+
+@if(session('error'))
+  <script>
+    Swal.fire({
+      icon: 'error',
+      title: 'Gagal!',
+      text: "{{ session('error') }}",
+      confirmButtonColor: '#dc3545'
+    });
+  </script>
+@endif
+
 <div class="card">
   <h2>TAMBAH PRODUK</h2>
   <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">

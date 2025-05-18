@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
   <link rel="stylesheet" href="{{ asset('css/produk.css') }}">
   <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   @stack('styles') <!-- Untuk stylesheet tambahan jika ada -->
 </head>
@@ -53,5 +54,8 @@
       @yield('content')
     </main>
   </div>
+  @stack('scripts')
+
+
 </body>
 </html>
