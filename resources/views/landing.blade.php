@@ -79,27 +79,27 @@
   <div class="max-w-xl pl-10 mb-6 text-center">
     <h2 class="text-4xl font-bold text-black">Produk Kami</h2>
   </div>
-  <div class="flex space-x-4 justify-center">
-@foreach($products as $product)
-
-<div class="card bg-base-100 w-96 shadow-lg">
-  <figure class="h-60 w-full overflow-hidden">
-    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="h-full w-full object-cover" />
-  </figure>
-  <div class="card-body bg-white shadow-xl">
-    <div class="flex items-center">
-      <h2 class="card-title font-bold text-black">{{ $product->name }}</h2>
-      <span class="ml-4 text-red-500">Rp {{ number_format($product->price, 0, ',', '.') }}/Kg</span>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
+    @foreach($products as $product)
+    <div class="card bg-base-100 w-80 shadow-lg">
+      <figure class="h-60 w-full overflow-hidden">
+        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="h-full w-full object-cover" />
+      </figure>
+      <div class="card-body bg-white shadow-xl">
+        <div class="flex items-center">
+          <h2 class="card-title font-bold text-black">{{ $product->name }}</h2>
+          <span class="ml-4 text-red-500">Rp {{ number_format($product->price, 0, ',', '.') }}/Kg</span>
+        </div>
+        <p class="text-justify line-clamp-3">{{ $product->deskripsi }}</p>
+        <div class="card-actions justify-end">
+          <button class="btn btn-primary bg-green-500" onclick="openModal('{{ asset($product->image) }}', '{{ $product->name }}')">Beli</button>
+        </div>
+      </div>
     </div>
-    <p class="text-justify line-clamp-3">{{ $product->deskripsi }}</p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary bg-green-500" onclick="openModal('{{ asset($product->image) }}', '{{ $product->name }}')">Beli</button>
-    </div>
+    @endforeach
   </div>
-</div>
-@endforeach
-</div>
 </section>
+
 
   <!-- MODAL -->
 <div id="productModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
@@ -142,6 +142,7 @@
   });
 </script>
 </div>
+
 <section id="informasi" class="p-6 bg-white text-black">
   <div class="text-center mb-10">
     <h2 class="text-4xl font-bold">Informasi</h2>
@@ -149,17 +150,22 @@
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <!-- Artikel 1 -->
     @foreach($articles as $article)
-<div class="card bg-white shadow-lg p-4">
-  <h3 class="text-xl font-semibold mb-2">{{ $article->JUDUL }}</h3>
-  <p class="text-justify text-gray-700 line-clamp-4">{{ $article->Deskripsi }}</p>
-  <a href="{{ $article->link }}" target="_blank" class="text-green-500 hover:underline mt-2 inline-block">Baca selengkapnya</a>
-</div>
-@endforeach
+      <div class="card bg-white shadow-lg p-4">
+        <img 
+          src="{{ asset('storage/' . $article->foto) }}" 
+          alt="{{ $article->JUDUL }}" 
+          class="w-full h-48 object-cover rounded mb-4"
+        />
 
+        <h3 class="text-xl font-semibold mb-2">{{ $article->JUDUL }}</h3>
+        <p class="text-justify text-gray-700 line-clamp-4">{{ $article->Deskripsi }}</p>
+        <a href="{{ $article->link }}" target="_blank" class="text-green-500 hover:underline mt-2 inline-block">Baca selengkapnya</a>
+      </div>
+    @endforeach
   </div>
 </section>
+
 
 <!-- Section Maps -->
 <section id="maps" class="p-6 bg-gray-100 min-h-[400px]">
