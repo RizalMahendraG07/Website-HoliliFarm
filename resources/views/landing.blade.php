@@ -74,8 +74,8 @@
     </div>
   </div>
 </section>
-<!-- Section Produk -->
- <section id="produk" class="p-6 bg-gray-100 min-h-screen shadow-lg flex flex-col items-center">
+<!-- Produk Section -->
+<section id="produk" class="p-6 bg-gray-100 min-h-screen shadow-lg flex flex-col items-center">
   <div class="max-w-xl pl-10 mb-6 text-center">
     <h2 class="text-4xl font-bold text-black">Produk Kami</h2>
   </div>
@@ -108,11 +108,18 @@
       <img id="modalImage" src="" alt="Produk" class="h-full w-full object-cover" />
     </figure>
     <h3 class="text-xl font-semibold mb-2" id="modalTitle">Pemesanan Produk</h3>
-    <form class="space-y-3">
-      <input type="text" placeholder="Nama" class="input input-bordered w-full bg-white" required />
-      <input type="text" placeholder="Alamat" class="input input-bordered w-full bg-white" required />
-      <input type="tel" placeholder="Nomor WhatsApp" class="input input-bordered w-full bg-white" required />
-      <input type="number" placeholder="Jumlah" class="input input-bordered w-full bg-white" required />
+    <form method="POST" action="{{ route('pesan.store') }}" class="space-y-3">
+      @csrf
+      <input type="text" name="nama_pembeli" placeholder="Nama" class="input input-bordered w-full bg-white" required />
+      <input type="text" name="alamat" placeholder="Alamat" class="input input-bordered w-full bg-white" required />
+      <input type="tel" name="nomor_wa" placeholder="Nomor WhatsApp" class="input input-bordered w-full bg-white" required />
+      <input type="number" name="jumlah_produk" placeholder="Jumlah" class="input input-bordered w-full bg-white" required min="1" />
+
+      <!-- Hidden inputs untuk data produk -->
+      <input type="hidden" name="produk_id" id="modalProdukId" />
+      <input type="hidden" name="harga_total" id="modalHargaTotal" />
+      <input type="hidden" name="status" value="pending" />
+
       <div class="flex justify-between pt-4">
         <button type="button" class="btn btn-outline text-white bg-red-500" onclick="closeModal()">Kembali</button>
         <button type="submit" class="btn btn-primary bg-green-600">Pesan</button>
@@ -122,31 +129,44 @@
 </div>
 
 <script>
-  function openModal(imageSrc, title) {
+  // Buka modal dan isi data produk
+  function openModal(imageSrc, title, produkId, harga) {
     document.getElementById('productModal').classList.remove('hidden');
     document.getElementById('modalImage').src = imageSrc;
     document.getElementById('modalTitle').innerText = `Pemesanan Produk: ${title}`;
+    document.getElementById('modalProdukId').value = produkId;
+    document.getElementById('modalHargaTotal').value = harga;
   }
 
+  // Tutup modal
   function closeModal() {
     document.getElementById('productModal').classList.add('hidden');
   }
 
-  document.querySelectorAll('.btn.bg-green-500').forEach((btn) => {
+  // Pasang event click di tombol beli
+  document.querySelectorAll('.btn-beli').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       const card = e.target.closest('.card');
       const imgSrc = card.querySelector('img').src;
       const title = card.querySelector('h2').innerText;
-      openModal(imgSrc, title);
+      const produkId = card.getAttribute('data-produk-id');
+      const hargaText = card.querySelector('.text-red-500').innerText; // Contoh: "Rp 25.000/Kg"
+      const hargaNumber = parseInt(hargaText.replace(/[^\d]/g, ''));
+
+      openModal(imgSrc, title, produkId, hargaNumber);
     });
   });
 </script>
+
+
 </div>
 
 <section id="informasi" class="p-6 bg-white text-black">
-  <div class="text-center mb-10">
-    <h2 class="text-4xl font-bold">Informasi</h2>
-    <p class="text-lg text-gray-600">Artikel seputar budidaya anggur dan kisah inspiratif petani</p>
+  <div class="text-center mb-12">
+    <h2 class="text-4xl font-bold mb-2">Informasi</h2>
+    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+      Artikel seputar budidaya anggur dan kisah inspiratif petani
+    </p>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
