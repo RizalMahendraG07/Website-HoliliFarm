@@ -7,13 +7,15 @@ use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LandingPageController;
-
+use App\Http\Controllers\PemesananController;
 
 // Public routes (tidak perlu login)
 Route::get('/', [LandingPageController::class, 'index']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+// Pemesanan
+Route::post('/pesan', [PemesananController::class, 'store'])->name('pesan.store');
 
 // Routes yang butuh login
 Route::middleware('auth')->group(function () {
@@ -46,4 +48,5 @@ Route::middleware('auth')->group(function () {
     Route::put('/riwayat/{id}', [RiwayatController::class, 'update'])->name('riwayat.update');
     Route::delete('/riwayat/{id}', [RiwayatController::class, 'destroy'])->name('riwayat.destroy');
 
+    
 });
