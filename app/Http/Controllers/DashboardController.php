@@ -19,7 +19,7 @@ class DashboardController extends Controller
         }
     
         public function store(Request $request)
-{
+    {
     $request->validate([
         'name' => 'required',
         'price' => 'required|numeric',

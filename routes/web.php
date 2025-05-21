@@ -6,12 +6,11 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LandingPageController;
+
 
 // Public routes (tidak perlu login)
-Route::get('/', [LandingController::class, 'index'])->name('landing'); // landing page
-Route::get('/landingpage', function () {
-    return view('landing');
-});
+Route::get('/', [LandingPageController::class, 'index']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

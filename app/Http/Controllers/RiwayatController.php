@@ -11,7 +11,7 @@ class RiwayatController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Riwayat::with('product'); // Pastikan relasi 'product' sudah ada di model Riwayat
+        $query = Riwayat::with('product');
 
         switch ($request->filter) {
             case 'harian':
@@ -46,27 +46,23 @@ class RiwayatController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_pembeli' => 'required|string',
-            'alamat' => 'required|string',
-            'produk_id' => 'required|exists:products,id',
-            'jumlah_produk' => 'required|integer|min:1',
-            'status' => 'required|in:Selesai,Proses,Cancel'
+            'nama_pembeli'   => 'required|string',
+            'alamat'         => 'required|string',
+            'produk_id'      => 'required|exists:products,id',
+            'jumlah_produk'  => 'required|integer|min:1',
+            'status'         => 'required|in:Selesai,Proses,Cancel'
         ]);
 
         $product = Product::find($request->produk_id);
-        if (!$product) {
-            return redirect()->back()->withErrors(['produk_id' => 'Produk tidak ditemukan.']);
-        }
-
-        $total = $product->price * $request->jumlah_produk;
+        $total   = $product->price * $request->jumlah_produk;
 
         Riwayat::create([
-            'nama_pembeli' => $request->nama_pembeli,
-            'alamat' => $request->alamat,
-            'produk_id' => $product->id,
+            'nama_pembeli'  => $request->nama_pembeli,
+            'alamat'        => $request->alamat,
+            'produk_id'     => $product->id,
             'jumlah_produk' => $request->jumlah_produk,
-            'harga_total' => $total,
-            'status' => $request->status
+            'harga_total'   => $total,
+            'status'        => $request->status
         ]);
 
         return redirect()->route('riwayat.index')->with('success', 'Riwayat berhasil ditambahkan');
@@ -74,7 +70,7 @@ class RiwayatController extends Controller
 
     public function edit($id)
     {
-        $riwayat = Riwayat::findOrFail($id);
+        $riwayat  = Riwayat::findOrFail($id);
         $products = Product::all();
         return view('admin.editRiwayat', compact('riwayat', 'products'));
     }
@@ -82,27 +78,27 @@ class RiwayatController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_pembeli' => 'required|string',
-            'alamat' => 'required|string',
-            'produk_id' => 'required|exists:products,id',
-            'jumlah_produk' => 'required|integer',
-            'harga_total' => 'required|numeric',
-            'status' => 'required|in:Selesai,Proses,Cancel'
+            'nama_pembeli'   => 'required|string',
+            'alamat'         => 'required|string',
+            'produk_id'      => 'required|exists:products,id',
+            'jumlah_produk'  => 'required|integer',
+            'harga_total'    => 'required|numeric',
+            'status'         => 'required|in:Selesai,Proses,Cancel'
         ]);
 
         $product = Product::findOrFail($request->produk_id);
-
         $riwayat = Riwayat::findOrFail($id);
+
         $riwayat->update([
-            'nama_pembeli' => $request->nama_pembeli,
-            'alamat' => $request->alamat,
-            'produk_id' => $product->id,
+            'nama_pembeli'  => $request->nama_pembeli,
+            'alamat'        => $request->alamat,
+            'produk_id'     => $product->id,
             'jumlah_produk' => $request->jumlah_produk,
-            'harga_total' => $request->harga_total,
-            'status' => $request->status
+            'harga_total'   => $request->harga_total,
+            'status'        => $request->status
         ]);
 
-        return redirect()->route('riwayat.index')->with('success', 'Informasi berhasil diupdate.');
+        return redirect()->route('riwayat.index')->with('success', 'Riwayat berhasil diupdate');
     }
 
     public function destroy($id)
@@ -110,6 +106,6 @@ class RiwayatController extends Controller
         $riwayat = Riwayat::findOrFail($id);
         $riwayat->delete();
 
-        return redirect('/riwayat')->with('success', 'Informasi berhasil dihapus.');
+        return redirect()->route('riwayat.index')->with('success', 'Riwayat berhasil dihapus');
     }
 }

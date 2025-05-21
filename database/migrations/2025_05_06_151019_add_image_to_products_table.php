@@ -12,15 +12,15 @@ return new class extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('foto')->nullable(); // Menambahkan kolom 'image'
+            $table->string('image')->nullable(); // Menambahkan kolom 'image'
         });
     }
     
     public function down()
 {
     Schema::table('products', function (Blueprint $table) {
-        if (Schema::hasColumn('products', 'foto')) {
-            $table->dropColumn('foto');
+        if (Schema::hasColumn('products', 'image')) {
+            $table->dropColumn('image');
         }
     });
 }

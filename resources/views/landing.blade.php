@@ -69,69 +69,38 @@
       </div>
       
       <!-- Bagian GAMBAR -->
-      <img src="/images/foto model petani.png" class="max-w-sm rounded-lg" />
+      <img src="/images/foto_model_petani.png" class="max-w-sm rounded-lg" />
 
     </div>
   </div>
 </section>
 <!-- Section Produk -->
-<section id="produk" class="p-6 bg-gray-100 min-h-screen shadow-lg flex flex-col items-center">
+ <section id="produk" class="p-6 bg-gray-100 min-h-screen shadow-lg flex flex-col items-center">
   <div class="max-w-xl pl-10 mb-6 text-center">
     <h2 class="text-4xl font-bold text-black">Produk Kami</h2>
   </div>
-  <div class="flex space-x-4 justify-center"> <!-- Flex container untuk card -->
-    <!-- Card 1 -->
-    <div class="card bg-base-100 w-96 shadow-lg">
-      <figure class="h-60 w-full overflow-hidden">
-  <img src="/images/tomatt.jpeg" alt="Tomat" class="h-full w-full object-cover" />
-</figure>
-      <div class="card-body bg-white shadow-xl">
-        <div class="flex items-center">
-          <h2 class="card-title font-bold text-black">Tomat</h2>
-          <span class="ml-4 text-red-500">Rp 20.000/Kg</span>
-        </div>
-        <p class="text-justify line-clamp-3">Tomat memiliki banyak khasiat bagi kesehatan, seperti menjaga daya tahan tubuh, mencegah kolesterol, mencegah kanker, mengatasi sembelit, menjaga kesehatan mata, dan menjaga kesehatan kulit.</p>
-        <div class="card-actions justify-end">
-          <button class="btn btn-primary bg-green-500">Beli</button>
-        </div>
-      </div>
+  <div class="flex space-x-4 justify-center">
+@foreach($products as $product)
+
+<div class="card bg-base-100 w-96 shadow-lg">
+  <figure class="h-60 w-full overflow-hidden">
+    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="h-full w-full object-cover" />
+  </figure>
+  <div class="card-body bg-white shadow-xl">
+    <div class="flex items-center">
+      <h2 class="card-title font-bold text-black">{{ $product->name }}</h2>
+      <span class="ml-4 text-red-500">Rp {{ number_format($product->price, 0, ',', '.') }}/Kg</span>
     </div>
-    
-    <!-- Card 2 -->
-    <div class="card bg-base-100 w-96 shadow-lg">
-      <figure class="h-60 w-full overflow-hidden">
-  <img src="/images/kentangg.jpg" alt="Tomat" class="h-full w-full object-cover" />
-</figure>
-      <div class="card-body bg-white shadow-xl">
-        <div class="flex items-center">
-          <h2 class="card-title font-bold text-black">Kentang</h2>
-          <span class="ml-4 text-red-500">Rp 25.000/Kg</span>
-        </div>
-        <p class="text-justify line-clamp-3">Kentang memiliki berbagai khasiat yang baik untuk kesehatan, mulai dari menjadi sumber energi utama, mendukung kesehatan pencernaan, menjaga kesehatan jantung, hingga meningkatkan sistem kekebalan tubuh.</p>
-        <div class="card-actions justify-end">
-          <button class="btn btn-primary bg-green-500">Beli</button>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Card 3 -->
-    <div class="card bg-base-100 w-96 shadow-lg">
-      <figure class="h-60 w-full overflow-hidden">
-  <img src="/images/cabe.jpg" alt="Tomat" class="h-full w-full object-cover" />
-</figure>
-      <div class="card-body bg-white shadow-xl">
-        <div class="flex items-center">
-          <h2 class="card-title font-bold text-black">Cabai</h2>
-          <span class="ml-4 text-red-500">Rp 50.000/Kg</span>
-        </div>
-        <p class="text-justify line-clamp-3">Cabai memiliki berbagai manfaat kesehatan, di antaranya mengurangi nyeri, menurunkan berat badan, dan meningkatkan kesehatan pencernaan.</p>
-        <div class="card-actions justify-end">
-          <button class="btn btn-primary bg-green-500">Beli</button>
-        </div>
-      </div>
+    <p class="text-justify line-clamp-3">{{ $product->deskripsi }}</p>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary bg-green-500" onclick="openModal('{{ asset($product->image) }}', '{{ $product->name }}')">Beli</button>
     </div>
   </div>
+</div>
+@endforeach
+</div>
 </section>
+
   <!-- MODAL -->
 <div id="productModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
   <div class="bg-white w-[90%] max-w-md rounded-xl shadow-2xl p-6 relative">
@@ -181,25 +150,14 @@
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <!-- Artikel 1 -->
-    <div class="card bg-white shadow-lg p-4">
-      <h3 class="text-xl font-semibold mb-2">Panduan Budidaya Anggur</h3>
-      <p class="text-justify text-gray-700 line-clamp-4">Gramedia menyediakan panduan lengkap budidaya anggur untuk pemula. Langkah awal seperti pembuatan naungan dan penggalian lubang tanam dijelaskan dengan detail.</p>
-      <a href="https://www.gramedia.com/best-seller/budidaya-anggur/" target="_blank" class="text-green-500 hover:underline mt-2 inline-block">Baca selengkapnya</a>
-    </div>
+    @foreach($articles as $article)
+<div class="card bg-white shadow-lg p-4">
+  <h3 class="text-xl font-semibold mb-2">{{ $article->JUDUL }}</h3>
+  <p class="text-justify text-gray-700 line-clamp-4">{{ $article->Deskripsi }}</p>
+  <a href="{{ $article->link }}" target="_blank" class="text-green-500 hover:underline mt-2 inline-block">Baca selengkapnya</a>
+</div>
+@endforeach
 
-    <!-- Artikel 2 -->
-    <div class="card bg-white shadow-lg p-4">
-      <h3 class="text-xl font-semibold mb-2">Faiz Hidayat: Petani Anggur dari Banyumas</h3>
-      <p class="text-justify text-gray-700 line-clamp-4">Faiz mengembangkan kebun anggur seluas 3.000 m² di Banyumas, dan belajar hingga ke Ukraina untuk mendalami teknik budidaya anggur berbagai varietas.</p>
-      <a href="https://www.banyumaskab.go.id/read/32230/faiz-hidayat-petani-anggur-dari-banyumas-yang-rela-belajar-sampai-ke-ukraina" target="_blank" class="text-green-500 hover:underline mt-2 inline-block">Baca selengkapnya</a>
-    </div>
-
-    <!-- Artikel 3 -->
-    <div class="card bg-white shadow-lg p-4">
-      <h3 class="text-xl font-semibold mb-2">Budidaya Anggur di Desa Juwiring</h3>
-      <p class="text-justify text-gray-700 line-clamp-4">Pak Arifin sukses membudidayakan 30 jenis anggur di Kendal dan memasarkan produknya hingga ke Papua dan Aceh. Peluang usaha yang menjanjikan di desa.</p>
-      <a href="https://www.kompasiana.com/muhammadasifaq5495/66f37318ed6415742f69d4b2/mengenal-budidaya-tanaman-anggur-peluang-bisnis-unik-di-desa-juwiring-yang-menjanjikan" target="_blank" class="text-green-500 hover:underline mt-2 inline-block">Baca selengkapnya</a>
-    </div>
   </div>
 </section>
 
