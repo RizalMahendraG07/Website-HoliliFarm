@@ -15,40 +15,52 @@
 <body>
   <div class="container">
     <aside class="sidebar">
-      <div>
-        <h2 class="sidebar-title">Holili Farm</h2>
+  <nav class="bg_sidebar">
+    <h2 class="judul_sidebar">Holili Farm</h2>
 
-        <nav class="sidebar-menu">
-          <ul>
-          <li class="{{ request()->routeIs('grafik.*') ? 'active' : '' }}">
-              <a href="{{ route('grafik.index') }}">
-                🧺 Dashboard
-              </a>
-            </li>
-            <li class="{{ request()->routeIs('products.*') ? 'active' : '' }}">
-              <a href="{{ route('products.index') }}">
-                🧺 Produk
-              </a>
-            </li>
-            <li class="{{ request()->routeIs('informasi.*') ? 'active' : '' }}">
-              <a href="{{ route('informasi.index') }}">
-                ℹ️ Informasi
-              </a>
-            </li>
-            <li class="{{ request()->routeIs('riwayat.*') ? 'active' : '' }}">
-              <a href="{{ route('riwayat.index') }}">
-              ℹ️ Riwayat Penjualan
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+    <ul class="menu_list">
+      <li class="{{ request()->routeIs('grafik.*') ? 'active' : '' }}">
+  <a href="{{ route('grafik.index') }}">
+    <img src="{{ asset('images/dashboardputih.svg') }}" alt="Dashboard" class="icon_sidebar icon_default" />
+    <img src="{{ asset('images/dashboardhijau.svg') }}" alt="Dashboard" class="icon_sidebar icon_hover" />
+    Dashboard
+  </a>
+</li>
 
-      <form action="{{ route('logout') }}" method="POST" class="logout-form">
+      <li class="{{ request()->routeIs('products.*') ? 'active' : '' }}">
+  <a href="{{ route('products.index') }}">
+    <img src="{{ asset('images/produkputih.svg') }}" alt="Produk" class="icon_sidebar icon_default" />
+    <img src="{{ asset('images/produkhijau.svg') }}" alt="Produk" class="icon_sidebar icon_hover" />
+    Produk
+  </a>
+</li>
+
+<li class="{{ request()->routeIs('informasi.*') ? 'active' : '' }}">
+  <a href="{{ route('informasi.index') }}">
+    <img src="{{ asset('images/informasiputih.svg') }}" alt="Dashboard" class="icon_sidebar icon_default" />
+    <img src="{{ asset('images/informasihijau.svg') }}" alt="Dashboard" class="icon_sidebar icon_hover" />
+    Informasi
+  </a>
+</li>
+
+      <li class="{{ request()->routeIs('riwayat.*') ? 'active' : '' }}">
+  <a href="{{ route('riwayat.index') }}">
+    <img src="{{ asset('images/riwayatpenjualanputih.svg') }}" alt="Produk" class="icon_sidebar icon_default" />
+    <img src="{{ asset('images/riwayatpenjualanhijau.svg') }}" alt="Produk" class="icon_sidebar icon_hover" />
+    Riwayat
+  </a>
+</li>
+  
+    </ul>
+
+    <div class="logout_container">
+      <form action="{{ route('logout') }}" method="POST">
         @csrf
-        <button class="logout">Log Out</button>
+        <button type="submit" class="logout_button">Log Out</button>
       </form>
-    </aside>
+    </div>
+  </nav>
+</aside>
 
     <main class="main-content">
       @yield('content')
