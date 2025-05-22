@@ -32,14 +32,14 @@ class PemesananController extends Controller
     $totalHarga = $product->price * $validated['jumlah_produk'];
 
     // Buat pesan WhatsApp yang berisi nama produk dan harga total
-    $message = "Halo, saya ingin memesan produk dengan data:\n"
+    $message = "Halo Holili Farm , saya ingin memesan produk dengan data:\n"
              . "Nama: {$validated['nama_pembeli']}\n"
              . "Alamat: {$validated['alamat']}\n"
              . "Produk: {$product->name}\n"
              . "Jumlah: {$validated['jumlah_produk']}\n"
              . "Total Harga: Rp " . number_format($totalHarga, 0, ',', '.') . "\n";
 
-    $phone = '6285737134160'; // Nomor admin format internasional
+    $phone = '6285334595068'; // Nomor admin format internasional
 
     $whatsappUrl = "https://wa.me/{$phone}?text=" . urlencode($message);
 
