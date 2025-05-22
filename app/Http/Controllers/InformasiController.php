@@ -72,6 +72,7 @@ class InformasiController extends Controller
             'Deskripsi' => 'required',
             'Tanggal'   => 'required|date',
             'foto'      => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'link'      => 'required|url',
         ]);
 
         $informasi = Informasi::findOrFail($id);

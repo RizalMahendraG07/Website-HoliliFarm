@@ -38,16 +38,29 @@
   <a href="{{ route('riwayat.create') }}" class="add-btn">+</a>
 </div>
 
-<form method="GET" action="{{ route('riwayat.index') }}" style="margin-bottom: 20px;">
-  <label for="filter">Filter Waktu:</label>
-  <select name="filter" id="filter" onchange="this.form.submit()">
-    <option value="">Semua</option>
-    <option value="harian" {{ request('filter')=='harian'?'selected':'' }}>Hari Ini</option>
-    <option value="mingguan" {{ request('filter')=='mingguan'?'selected':'' }}>Minggu Ini</option>
-    <option value="bulanan" {{ request('filter')=='bulanan'?'selected':'' }}>Bulan Ini</option>
-    <option value="tahunan" {{ request('filter')=='tahunan'?'selected':'' }}>Tahun Ini</option>
-  </select>
+<form method="GET" action="{{ route('riwayat.index') }}" style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+  <div>
+    <label for="filter">Filter Waktu:</label><br>
+    <select name="filter" id="filter" onchange="this.form.submit()">
+      <option value="">Semua</option>
+      <option value="harian" {{ request('filter')=='harian'?'selected':'' }}>Hari Ini</option>
+      <option value="mingguan" {{ request('filter')=='mingguan'?'selected':'' }}>Minggu Ini</option>
+      <option value="bulanan" {{ request('filter')=='bulanan'?'selected':'' }}>Bulan Ini</option>
+      <option value="tahunan" {{ request('filter')=='tahunan'?'selected':'' }}>Tahun Ini</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="status">Filter Status:</label><br>
+    <select name="status" id="status" onchange="this.form.submit()">
+      <option value="">Semua</option>
+      <option value="Proses" {{ request('status')=='Proses'?'selected':'' }}>Diproses</option>
+      <option value="Selesai" {{ request('status')=='Selesai'?'selected':'' }}>Selesai</option>
+      <option value="Cancel" {{ request('status')=='Cancel'?'selected':'' }}>Dibatalkan</option>
+    </select>
+  </div>
 </form>
+
 
 <ul class="product-list">
   @foreach ($riwayat as $index => $item)

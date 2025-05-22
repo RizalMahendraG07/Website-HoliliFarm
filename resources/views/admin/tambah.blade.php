@@ -41,6 +41,8 @@
 
   <label for="deskripsi">Deskripsi</label>
   <input type="text" name="deskripsi" id="deskripsi" required>
+  <label for="stok">Stok</label>
+  <input type="number" name="stok" id="stok" required>
 
   <div class="form-buttons">
     <a href="{{ route('dashboard') }}" class="btn-red">KEMBALI</a>

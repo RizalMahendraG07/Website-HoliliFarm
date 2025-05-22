@@ -27,6 +27,9 @@
     <label for="foto">Ganti Foto (opsional)</label>
     <input type="file" name="foto" id="foto" accept="image/*">
 
+    <label for="link">Link Artikel</label>
+  <input type="text" name="link" id="link" value="{{ $informasi->link }}"required>
+
     <div class="form-buttons">
       <a href="{{ route('informasi.index') }}" class="btn-red">KEMBALI</a>
       <button type="submit" class="btn-green">SIMPAN</button>

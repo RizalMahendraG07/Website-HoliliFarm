@@ -73,6 +73,7 @@
           <span>{{ $product->name }}</span>
           <span>Rp. {{ number_format($product->price, 0, ',', '.') }} /Kg</span>
           <span class="deskripsi">{{ $product->deskripsi }}</span>
+          <span class="stok">Stok: {{ $product->stok }} Kg</span>
         </div>
       </div>
       <div class="actions">

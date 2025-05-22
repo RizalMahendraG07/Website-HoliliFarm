@@ -17,6 +17,10 @@
 
     <label for="deskripsi">Deskripsi</label>
     <input type="text" name="deskripsi" id="deskripsi" value="{{ $product->deskripsi }}" required>
+    <label for="stok">Stok</label>
+    <input type="number" name="stok" id="stok" value="{{ $product->stok }}" required>
+
+   
 
     <label>Foto Saat Ini</label><br>
     @if($product->image)

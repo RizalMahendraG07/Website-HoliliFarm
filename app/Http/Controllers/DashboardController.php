@@ -16,6 +16,7 @@ class DashboardController extends Controller
         {
             $products = Product::all();
             return view('admin/dashboard', compact('products'));
+            
         }
     
         public function store(Request $request)
@@ -24,7 +25,8 @@ class DashboardController extends Controller
         'name' => 'required',
         'price' => 'required|numeric',
         'deskripsi' => 'required',
-        'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+        'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        'stok' => 'required|integer|min:0'
     ]);
 
     try {
@@ -35,6 +37,7 @@ class DashboardController extends Controller
             'price' => $request->price,
             'deskripsi' => $request->deskripsi,
             'image' =>  'storage/' . $path,
+            'stok' => $request->stok,
         ]);
 
         return redirect()->route('dashboard')->with('success', 'Produk berhasil ditambahkan!');
@@ -51,6 +54,7 @@ public function update(Request $request, $id)
         'price' => 'required|numeric',
         'deskripsi' => 'required|string',
         'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        'stok' => 'required|integer|min:0'
     ]);
 
     try {
@@ -59,6 +63,7 @@ public function update(Request $request, $id)
         $product->name = $request->name;
         $product->price = $request->price;
         $product->deskripsi = $request->deskripsi;
+        $product->stok = $request->stok;
 
         if ($request->hasFile('image')) {
             if ($product->image && file_exists(public_path($product->image))) {

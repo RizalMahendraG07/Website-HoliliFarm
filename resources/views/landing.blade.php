@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Holili Farm</title>
 
     <!-- Bootstrap -->
@@ -14,24 +14,21 @@
     <!-- DaisyUI -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.2/dist/full.css" rel="stylesheet" />
     <style>
-  html {
-    scroll-behavior: smooth;
-  }
-  .pagination a {
-    color: #16a34a; 
-    background-color: #ffffff;/* default link color */
-}
-
-.pagination a:hover {
-    color:rgb(3, 70, 27); /* green on hover */
-}
-
-.pagination span[aria-current="page"] {
-    background-color:rgb(194, 198, 208); /* blue background */
-    color: white;
-}
-
-</style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .pagination a {
+            color: #16a34a;
+            background-color: #ffffff;
+        }
+        .pagination a:hover {
+            color: rgb(3, 70, 27);
+        }
+        .pagination span[aria-current="page"] {
+            background-color: rgb(194, 198, 208);
+            color: white;
+        }
+    </style>
 </head>
 <body class="bg-white min-h-screen">
     <header>
@@ -44,170 +41,227 @@
                         </svg>
                     </div>
                     <ul class="menu menu-sm dropdown-content bg-white text-black rounded-box z-10 mt-3 w-52 p-2 shadow">
-                        <li><a>Beranda</a></li>
-                        <li><a>Produk</a></li>
-                        <li><a>Lokasi</a></li>
-                        <li><a>Informasi</a></li>
-                        <li><a>Tentang Kami</a></li>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#produk">Produk</a></li>
+                        <li><a href="#maps">Lokasi</a></li>
+                        <li><a href="#informasi">Informasi</a></li>
+                        <li><a href="#tentangkami">Tentang Kami</a></li>
                     </ul>
                 </div>
-                <a class="btn btn-ghost text-xl">
+                <a class="btn btn-ghost text-xl" href="#">
                     <img src="/images/holili-farm-logo.png" alt="Logo" class="h-10" />
                 </a>
             </div>
             <div class="navbar-center hidden lg:flex">
                 <ul class="menu menu-horizontal text-black px-1">
-    <li><a href="#home" class="hover:text-green-500">Beranda</a></li>
-    <li><a href="#produk" class="hover:text-green-500">Produk</a></li>
-    <li><a href="#maps" class="hover:text-green-500">Lokasi</a></li>
-    <li><a href="#informasi" class="hover:text-green-500">Informasi</a></li>
-    <li><a href="#tentangkami" class="hover:text-green-500">Tentang Kami</a></li>
-</ul>
+                    <li><a href="#home" class="hover:text-green-500">Beranda</a></li>
+                    <li><a href="#produk" class="hover:text-green-500">Produk</a></li>
+                    <li><a href="#maps" class="hover:text-green-500">Lokasi</a></li>
+                    <li><a href="#informasi" class="hover:text-green-500">Informasi</a></li>
+                    <li><a href="#tentangkami" class="hover:text-green-500">Tentang Kami</a></li>
+                </ul>
             </div>
             <div class="navbar-end">
                 <a href="/dashboard" class="btn text-white bg-green-500 hover:bg-green-700">Log In</a>
             </div>
         </div>
     </header>
+
     <section id="home" class="p-6">
-  <div class="row_home flex items-start justify-center">
-    <div class="hero-content max-w-screen-xl w-full mx-auto px-20 flex flex-col items-center text-center lg:flex-row lg:text-left lg:gap-10">
-
-      
-      <!-- Bagian TEKS -->
-      <div>
-        <h1 class="text-6xl text-green-500 font-bold mb-4">Selamat Datang Di Holili Farm</h1>
-        <p class="text-xl text-black">
-          Merupakan Sistem Informasi Perkebunan Greenhouse yang berada di Desa Ajung-Jember.
-        </p>
-      </div>
-      
-      <!-- Bagian GAMBAR -->
-      <img src="/images/foto_model_petani.png" class="max-w-sm rounded-lg" />
-
-    </div>
-  </div>
-</section>
-<!-- Produk Section -->
-
-<section id="produk" class="p-6 bg-gray-100 min-h-screen shadow-lg flex flex-col items-center">
-  <div class="max-w-xl pl-10 mb-6 text-center">
-    <h2 class="text-4xl font-bold text-black">Produk Kami</h2>
-  </div>
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
-    @foreach($products as $product)
-    <div class="card bg-base-100 w-80 shadow-lg">
-      <figure class="h-60 w-full overflow-hidden">
-        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="h-full w-full object-cover" />
-      </figure>
-      <div class="card-body bg-white shadow-xl">
-        <div class="flex items-center">
-          <h2 class="card-title font-bold text-black">{{ $product->name }}</h2>
-          <span class="ml-4 text-red-500">Rp {{ number_format($product->price, 0, ',', '.') }}/Kg</span>
+        <div class="row_home flex items-start justify-center">
+            <div class="hero-content max-w-screen-xl w-full mx-auto px-20 flex flex-col items-center text-center lg:flex-row lg:text-left lg:gap-10">
+                <div>
+                    <h1 class="text-6xl text-green-500 font-bold mb-4">Selamat Datang Di Holili Farm</h1>
+                    <p class="text-xl text-black">
+                        Merupakan Sistem Informasi Perkebunan Greenhouse yang berada di Desa Ajung-Jember.
+                    </p>
+                </div>
+                <img src="/images/foto_model_petani.png" class="max-w-sm rounded-lg" />
+            </div>
         </div>
-        <p class="text-justify line-clamp-3">{{ $product->deskripsi }}</p>
-        <div class="card-actions justify-end">
-          <button class="btn btn-primary bg-green-500" onclick="openModal('{{ asset($product->image) }}', '{{ $product->name }}')">Beli</button>
+    </section>
+
+    <!-- Produk Section -->
+    <section id="produk" class="p-6 bg-gray-100 min-h-screen shadow-lg flex flex-col items-center">
+        <div class="max-w-xl pl-10 mb-6 text-center">
+            <h2 class="text-4xl font-bold text-black">Produk Kami</h2>
         </div>
-      </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
+            @foreach($products as $product)
+            <div class="card bg-base-100 w-80 shadow-lg" data-produk-id="{{ $product->id }}" data-harga="{{ $product->price }}">
+                <figure class="h-60 w-full overflow-hidden">
+                    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="h-full w-full object-cover" />
+                </figure>
+                <div class="card-body bg-white shadow-xl">
+                    <div class="flex items-center">
+                        <h2 class="card-title font-bold text-black">{{ $product->name }}</h2>
+                        <span class="ml-4 text-red-500">Rp {{ number_format($product->price, 0, ',', '.') }}/Kg</span>
+                    </div>
+                    <p class="text-justify line-clamp-3">{{ $product->deskripsi }}</p>
+                    <span class="text-gray-500">Stok: {{ $product->stok }} Kg</span>
+
+                    <div class="card-actions justify-end">
+                        <!-- Tambahkan class btn-beli dan data produk -->
+                        <button type="button" class="btn btn-primary bg-green-500 btn-beli">Beli</button>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        <div class="mt-6 pagination">{{ $products->links()}}</div>
+    </section>
+
+    <!-- MODAL -->
+    <div id="productModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+        <div class="bg-white w-[90%] max-w-md rounded-xl shadow-2xl p-6 relative">
+            <figure class="h-48 w-full overflow-hidden rounded-lg mb-4">
+                <img id="modalImage" src="" alt="Produk" class="h-full w-full object-cover" />
+            </figure>
+            <h3 class="text-xl font-semibold mb-4 text-center" id="modalTitle">Pemesanan Produk</h3>
+
+            <form method="POST" action="{{ route('pesan.store') }}" class="space-y-4" id="orderForm" onsubmit="return handlePesan(event)">
+                @csrf
+
+                <!-- Nama Pembeli -->
+                <div class="form-control w-full">
+                    <label class="label">
+                        <span class="label-text">Nama Pembeli</span>
+                    </label>
+                    <input type="text" name="nama_pembeli" placeholder="Nama" class="input input-bordered w-full bg-white" required />
+                </div>
+
+                <!-- Alamat -->
+                <div class="form-control w-full">
+                    <label class="label">
+                        <span class="label-text">Alamat</span>
+                    </label>
+                    <input type="text" name="alamat" placeholder="Alamat lengkap" class="input input-bordered w-full bg-white" required />
+                </div>
+
+                <!-- Nomor WhatsApp -->
+                <div class="form-control w-full">
+                    <label class="label">
+                        <span class="label-text">Nomor WhatsApp</span>
+                    </label>
+                    <input type="tel" name="nomor_wa" placeholder="08xxxxxxxxxx" class="input input-bordered w-full bg-white" required />
+                </div>
+
+                <!-- Jumlah Produk -->
+                <div class="form-control w-full">
+                    <label class="label">
+                        <span class="label-text">Jumlah Produk</span>
+                    </label>
+                    <label class="input-group">
+                        <input type="number" name="jumlah_produk" id="jumlah_produk" placeholder="Jumlah" class="input input-bordered w-full bg-white" required min="1" />
+                        <span>Kg</span>
+                    </label>
+                </div>
+
+                <!-- Hidden Inputs -->
+                <input type="hidden" name="produk_id" id="modalProdukId" />
+                <input type="hidden" name="harga_total" id="modalHargaTotal" />
+                <input type="hidden" name="status" value="pending" />
+
+                <!-- Tombol -->
+                <div class="flex justify-between pt-4">
+                    <button type="button" class="btn btn-outline text-white bg-red-500" onclick="closeModal()">Kembali</button>
+                    <button type="submit" class="btn btn-primary bg-green-600">Pesan</button>
+                </div>
+            </form>
+        </div>
     </div>
-    @endforeach
-  </div>
-  <div class="mt-6 pagination">{{ $products->links()}}</div>
-</section>
-
-
- <!-- MODAL -->
-<div id="productModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-  <div class="bg-white w-[90%] max-w-md rounded-xl shadow-2xl p-6 relative">
-    <figure class="h-48 w-full overflow-hidden rounded-lg mb-4">
-      <img id="modalImage" src="" alt="Produk" class="h-full w-full object-cover" />
-    </figure>
-    <h3 class="text-xl font-semibold mb-4 text-center" id="modalTitle">Pemesanan Produk</h3>
-
-    <form method="POST" action="{{ route('pesan.store') }}" class="space-y-4">
-      @csrf
-
-      <!-- Nama Pembeli -->
-      <div class="form-control w-full">
-        <label class="label">
-          <span class="label-text">Nama Pembeli</span>
-        </label>
-        <input type="text" name="nama_pembeli" placeholder="Nama" class="input input-bordered w-full bg-white" required />
-      </div>
-
-      <!-- Alamat -->
-      <div class="form-control w-full">
-        <label class="label">
-          <span class="label-text">Alamat</span>
-        </label>
-        <input type="text" name="alamat" placeholder="Alamat lengkap" class="input input-bordered w-full bg-white" required />
-      </div>
-
-      <!-- Nomor WhatsApp -->
-      <div class="form-control w-full">
-        <label class="label">
-          <span class="label-text">Nomor WhatsApp</span>
-        </label>
-        <input type="tel" name="nomor_wa" placeholder="08xxxxxxxxxx" class="input input-bordered w-full bg-white" required />
-      </div>
-
-      <!-- Jumlah Produk -->
-      <div class="form-control w-full">
-        <label class="label">
-          <span class="label-text">Jumlah Produk</span>
-        </label>
-        <label class="input-group">
-          <input type="number" name="jumlah_produk" placeholder="Jumlah" class="input input-bordered w-full bg-white" required min="1" />
-          <span>Kg</span>
-        </label>
-      </div>
-
-      <!-- Hidden Inputs -->
-      <input type="hidden" name="produk_id" id="modalProdukId" />
-      <input type="hidden" name="harga_total" id="modalHargaTotal" />
-      <input type="hidden" name="status" value="pending" />
-
-      <!-- Tombol -->
-      <div class="flex justify-between pt-4">
-        <button type="button" class="btn btn-outline text-white bg-red-500" onclick="closeModal()">Kembali</button>
-        <button type="submit" class="btn btn-primary bg-green-600">Pesan</button>
-      </div>
-    </form>
-  </div>
-</div>
-
 
 <script>
-  // Buka modal dan isi data produk
-  function openModal(imageSrc, title, produkId, harga) {
-    document.getElementById('productModal').classList.remove('hidden');
-    document.getElementById('modalImage').src = imageSrc;
-    document.getElementById('modalTitle').innerText = `Pemesanan Produk: ${title}`;
-    document.getElementById('modalProdukId').value = produkId;
-    document.getElementById('modalHargaTotal').value = harga;
-  }
+    // Buka modal dan isi data produk
+    function openModal(imageSrc, title, produkId, harga) {
+        document.getElementById('productModal').classList.remove('hidden');
+        document.getElementById('modalImage').src = imageSrc;
+        document.getElementById('modalTitle').innerText = `Pemesanan Produk: ${title}`;
+        document.getElementById('modalProdukId').value = produkId;
+        document.getElementById('modalHargaTotal').value = harga;
+    }
 
-  // Tutup modal
-  function closeModal() {
-    document.getElementById('productModal').classList.add('hidden');
-  }
+    // Tutup modal
+    function closeModal() {
+        document.getElementById('productModal').classList.add('hidden');
+        document.getElementById('orderForm').reset();
+    }
 
-  // Pasang event click di tombol beli
-  document.querySelectorAll('.btn-beli').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      const card = e.target.closest('.card');
-      const imgSrc = card.querySelector('img').src;
-      const title = card.querySelector('h2').innerText;
-      const produkId = card.getAttribute('data-produk-id');
-      const hargaText = card.querySelector('.text-red-500').innerText; // Contoh: "Rp 25.000/Kg"
-      const hargaNumber = parseInt(hargaText.replace(/[^\d]/g, ''));
+    // Pasang event click di tombol beli
+    document.querySelectorAll('.btn-beli').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            const card = e.target.closest('.card');
+            const imgSrc = card.querySelector('img').src;
+            const title = card.querySelector('h2').innerText;
+            const produkId = card.getAttribute('data-produk-id');
+            const harga = card.getAttribute('data-harga');
 
-      openModal(imgSrc, title, produkId, hargaNumber);
+            openModal(imgSrc, title, produkId, harga);
+        });
     });
-  });
+
+    // Handle form submit (AJAX + redirect ke WhatsApp)
+   async function handlePesan(event) {
+    event.preventDefault();
+
+    const form = document.getElementById('orderForm');
+    const formData = new FormData(form);
+
+    const nama = formData.get('nama_pembeli');
+    const alamat = formData.get('alamat');
+    const nomor = formData.get('nomor_wa');
+    const jumlah = formData.get('jumlah_produk');
+    const produk = document.getElementById('modalTitle').innerText.replace('Pemesanan Produk: ', '');
+    const adminWA = '6285737134160';
+
+    try {
+        const response = await fetch(form.action, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+                'Accept': 'application/json',
+            },
+            body: formData,
+        });
+
+        if (!response.ok) {
+            alert('Gagal menyimpan data!');
+            return false;
+        }
+
+        const message = `Halo, saya ingin memesan produk: ${produk}\n` +
+            `Nama: ${nama}\n` +
+            `Alamat: ${alamat}\n` +
+            `Jumlah: ${jumlah} Kg\n` +
+            `No WA: ${nomor}`;
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${adminWA}?text=${encodedMessage}`;
+
+     showPopup(); // tampilkan popup
+setTimeout(() => {
+    window.open(`https://wa.me/${adminWA}?text=${encodedMessage}`, '_blank');
+    window.location.href = '/'; // redirect setelah 3 detik
+}, 3000);
+    } catch (error) {
+        console.error(error);
+        alert('Terjadi kesalahan saat mengirim pesanan.');
+    }
+
+    return false;
+}
+// Tampilkan popup
+function showPopup() {
+    document.getElementById('popupBerhasil').classList.remove('hidden');
+}
+
+// Sembunyikan popup
+function closePopup() {
+    document.getElementById('popupBerhasil').classList.add('hidden');
+}
+
 </script>
+
 
 
 </div>
@@ -299,6 +353,13 @@
     &copy; 2025 Holili Farm. All rights reserved.
   </div>
 </footer>
+<div id="popupBerhasil" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg shadow-xl p-6 max-w-sm text-center">
+        <h2 class="text-2xl font-bold text-green-600 mb-4">Pesanan Berhasil!</h2>
+        <p class="text-gray-700 mb-4">Anda akan diarahkan ke WhatsApp untuk konfirmasi.</p>
+        <button onclick="closePopup()" class="btn bg-green-500 text-white hover:bg-green-700">Oke</button>
+    </div>
+</div>
 
 </body>
 </html>
