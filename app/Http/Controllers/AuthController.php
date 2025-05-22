@@ -11,6 +11,10 @@ class AuthController extends Controller
     {
         return view('admin.login');
     }
+    public function showLupaKatasandi()
+    {
+        return view('admin.LupaKatasandi');
+    }
 
     public function login(Request $request)
     {

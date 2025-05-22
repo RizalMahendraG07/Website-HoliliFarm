@@ -17,6 +17,20 @@
   html {
     scroll-behavior: smooth;
   }
+  .pagination a {
+    color: #16a34a; 
+    background-color: #ffffff;/* default link color */
+}
+
+.pagination a:hover {
+    color:rgb(3, 70, 27); /* green on hover */
+}
+
+.pagination span[aria-current="page"] {
+    background-color:rgb(194, 198, 208); /* blue background */
+    color: white;
+}
+
 </style>
 </head>
 <body class="bg-white min-h-screen">
@@ -75,10 +89,12 @@
   </div>
 </section>
 <!-- Produk Section -->
+
 <section id="produk" class="p-6 bg-gray-100 min-h-screen shadow-lg flex flex-col items-center">
   <div class="max-w-xl pl-10 mb-6 text-center">
     <h2 class="text-4xl font-bold text-black">Produk Kami</h2>
   </div>
+
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
     @foreach($products as $product)
     <div class="card bg-base-100 w-80 shadow-lg">
@@ -98,28 +114,62 @@
     </div>
     @endforeach
   </div>
+  <div class="mt-6 pagination">{{ $products->links()}}</div>
 </section>
 
 
-  <!-- MODAL -->
+ <!-- MODAL -->
 <div id="productModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
   <div class="bg-white w-[90%] max-w-md rounded-xl shadow-2xl p-6 relative">
     <figure class="h-48 w-full overflow-hidden rounded-lg mb-4">
       <img id="modalImage" src="" alt="Produk" class="h-full w-full object-cover" />
     </figure>
-    <h3 class="text-xl font-semibold mb-2" id="modalTitle">Pemesanan Produk</h3>
-    <form method="POST" action="{{ route('pesan.store') }}" class="space-y-3">
-      @csrf
-      <input type="text" name="nama_pembeli" placeholder="Nama" class="input input-bordered w-full bg-white" required />
-      <input type="text" name="alamat" placeholder="Alamat" class="input input-bordered w-full bg-white" required />
-      <input type="tel" name="nomor_wa" placeholder="Nomor WhatsApp" class="input input-bordered w-full bg-white" required />
-      <input type="number" name="jumlah_produk" placeholder="Jumlah" class="input input-bordered w-full bg-white" required min="1" />
+    <h3 class="text-xl font-semibold mb-4 text-center" id="modalTitle">Pemesanan Produk</h3>
 
-      <!-- Hidden inputs untuk data produk -->
+    <form method="POST" action="{{ route('pesan.store') }}" class="space-y-4">
+      @csrf
+
+      <!-- Nama Pembeli -->
+      <div class="form-control w-full">
+        <label class="label">
+          <span class="label-text">Nama Pembeli</span>
+        </label>
+        <input type="text" name="nama_pembeli" placeholder="Nama" class="input input-bordered w-full bg-white" required />
+      </div>
+
+      <!-- Alamat -->
+      <div class="form-control w-full">
+        <label class="label">
+          <span class="label-text">Alamat</span>
+        </label>
+        <input type="text" name="alamat" placeholder="Alamat lengkap" class="input input-bordered w-full bg-white" required />
+      </div>
+
+      <!-- Nomor WhatsApp -->
+      <div class="form-control w-full">
+        <label class="label">
+          <span class="label-text">Nomor WhatsApp</span>
+        </label>
+        <input type="tel" name="nomor_wa" placeholder="08xxxxxxxxxx" class="input input-bordered w-full bg-white" required />
+      </div>
+
+      <!-- Jumlah Produk -->
+      <div class="form-control w-full">
+        <label class="label">
+          <span class="label-text">Jumlah Produk</span>
+        </label>
+        <label class="input-group">
+          <input type="number" name="jumlah_produk" placeholder="Jumlah" class="input input-bordered w-full bg-white" required min="1" />
+          <span>Kg</span>
+        </label>
+      </div>
+
+      <!-- Hidden Inputs -->
       <input type="hidden" name="produk_id" id="modalProdukId" />
       <input type="hidden" name="harga_total" id="modalHargaTotal" />
       <input type="hidden" name="status" value="pending" />
 
+      <!-- Tombol -->
       <div class="flex justify-between pt-4">
         <button type="button" class="btn btn-outline text-white bg-red-500" onclick="closeModal()">Kembali</button>
         <button type="submit" class="btn btn-primary bg-green-600">Pesan</button>
@@ -127,6 +177,7 @@
     </form>
   </div>
 </div>
+
 
 <script>
   // Buka modal dan isi data produk
@@ -184,6 +235,7 @@
       </div>
     @endforeach
   </div>
+  <div class="mt-6">{{ $articles->links()}}</div>
 </section>
 
 

@@ -14,5 +14,6 @@ class Informasi extends Model
         'Deskripsi',
         'Tanggal',
         'foto',
+        'link',
     ];
 }

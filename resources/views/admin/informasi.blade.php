@@ -70,7 +70,7 @@
       @endif
 
       <div class="product-details">
-        <span>{{ $index + 1 }}. {{ $info->Judul }}</span>
+        <span>{{ $index + 1 }}. {{ $info->JUDUL }}</span>
         <span class="deskripsi">{{ $info->Deskripsi }}</span>
       </div>
 

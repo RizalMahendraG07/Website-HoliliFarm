@@ -10,8 +10,9 @@ class LandingPageController extends Controller
 
 public function index()
 {
-    $products = Product::all();
-    $articles = Informasi::all();
+    $products = Product::paginate(3)->appends(request()->query())->fragment('produk');
+
+    $articles = Informasi::paginate(3);
 
     return view('landing', compact('products','articles'));
 }

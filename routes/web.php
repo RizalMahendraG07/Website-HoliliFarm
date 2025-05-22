@@ -8,14 +8,31 @@ use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PemesananController;
+use App\Http\Controllers\LupaKatasandiController;
+use App\Http\Controllers\ResetPassword;
 
 // Public routes (tidak perlu login)
 Route::get('/', [LandingPageController::class, 'index']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/lupakatasandi', [AuthController::class, 'showLupaKatasandi'])->name('lupakatasandi');
 // Pemesanan
 Route::post('/pesan', [PemesananController::class, 'store'])->name('pesan.store');
+
+
+// Form input email (lupa password)
+Route::get('forgot-password', [LupaKatasandiController::class, 'showLinkRequestForm'])->name('password.request');
+
+// Kirim link ke email
+Route::post('forgot-password', [LupaKatasandiController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// Form untuk set password baru
+Route::get('reset-password/{token}', [ResetPassword::class, 'showResetForm'])->name('password.reset');
+
+// Simpan password baru
+Route::post('reset-password', [ResetPassword::class, 'reset'])->name('password.update');
+
 
 // Routes yang butuh login
 Route::middleware('auth')->group(function () {

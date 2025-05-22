@@ -36,9 +36,10 @@ class InformasiController extends Controller
             'Deskripsi' => 'required',
             'Tanggal'   => 'required|date',
             'foto'      => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'link'      => 'required|url',
         ]);
 
-        $data = $request->only(['Judul', 'Deskripsi', 'Tanggal']);
+        $data = $request->only(['Judul', 'Deskripsi', 'Tanggal','link']);
 
         if ($request->hasFile('foto')) {
             // Simpan ke storage/app/public/foto_informasi/

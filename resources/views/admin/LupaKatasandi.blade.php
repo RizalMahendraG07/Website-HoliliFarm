@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Holili Farm</title>
+    <title>Lupa Kata Sandi - Holili Farm</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -55,28 +55,40 @@
         button:hover {
             background-color: #45a049;
         }
-        .register-link {
+        .back-to-login {
             text-align: center;
             margin-top: 1rem;
             font-size: 0.9rem;
         }
-        .register-link a {
+        .back-to-login a {
             color: #4CAF50;
             text-decoration: none;
         }
-        .error-message {
-            background-color: #ffe0e0;
-            color: #d00000;
+        .error-message, .success-message {
             padding: 10px;
             margin-bottom: 1rem;
             border-radius: 5px;
             text-align: center;
         }
+        .error-message {
+            background-color: #ffe0e0;
+            color: #d00000;
+        }
+        .success-message {
+            background-color: #e0ffe0;
+            color: #007700;
+        }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <h1>HoliliFarm Login</h1>
+        <h1>Lupa Kata Sandi</h1>
+
+        @if (session('status'))
+            <div class="success-message">
+                {{ session('status') }}
+            </div>
+        @endif
 
         @if ($errors->any())
             <div class="error-message">
@@ -84,20 +96,17 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('password.email') }}">
             @csrf
 
-            <label for="email">Email</label>
+            <label for="email">Masukkan Email Anda</label>
             <input type="email" id="email" name="email" value="{{ old('email') }}" required>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-
-            <button type="submit">Masuk</button>
+            <button type="submit">Kirim Link Reset</button>
         </form>
 
-        <div class="register-link">
-            <p>Lupa Kata Sandi? <a href="{{ route('lupakatasandi')}}">Klik disini</a></p>
+        <div class="back-to-login">
+            <p><a href="{{ route('login') }}">← Kembali ke Login</a></p>
         </div>
     </div>
 </body>
