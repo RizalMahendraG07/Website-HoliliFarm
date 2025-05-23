@@ -62,7 +62,7 @@
                 </ul>
             </div>
             <div class="navbar-end">
-                <a href="/dashboard" class="btn text-white bg-green-500 hover:bg-green-700">Log In</a>
+                <a href="/grafik" class="btn text-white bg-green-500 hover:bg-green-700">Log In</a>
             </div>
         </div>
     </header>
